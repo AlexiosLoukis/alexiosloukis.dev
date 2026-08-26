@@ -1,11 +1,163 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Base from "../layouts/Base.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const title = "Alexios Loukis — Cloud & DevOps";
+const description =
+  "Final-year Information Systems student in Patras, Greece, moving into cloud and DevOps engineering. Docker, Linux, CI/CD, and Azure.";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Base title={title} description={description}>
+  <main>
+    <h1>Alexios Loukis</h1>
+    <p class="tagline">Cloud &amp; DevOps · Patras, Greece</p>
+
+    <p class="lede">
+      I build and automate infrastructure. Right now that means containers,
+      Linux and CI/CD pipelines, and learning Azure and Terraform properly
+      rather than quickly. Final-year Information Systems student at the
+      University of Patras, graduating June 2027 and looking for a junior cloud
+      or DevOps role.
+    </p>
+
+    <section>
+      <h2>Current state</h2>
+
+      <div class="status">
+        <div class="status-row">
+          <span class="tag tag-live">running</span>
+          <span class="stack">
+            Docker · Docker Compose · Linux · Bash · Python · Git · GitHub
+            Actions
+          </span>
+        </div>
+
+        <div class="status-row">
+          <span class="tag tag-progress">applying</span>
+          <span class="stack">
+            Microsoft Azure · Terraform
+            <span class="note">AZ-104 Azure Administrator — expected Oct 2026</span>
+          </span>
+        </div>
+
+        <div class="status-row">
+          <span class="tag tag-queued">queued</span>
+          <span class="stack">
+            Kubernetes · Observability (Prometheus, Grafana) · Cloud security
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+
+      <div class="entry">
+        <div class="entry-head">
+          <h3>Multi-container web app with Redis caching</h3>
+          <span class="tag tag-live">shipped</span>
+        </div>
+        <p class="entry-tech">
+          Docker · Docker Compose · Python/Flask · Redis · GitHub Actions
+        </p>
+        <p>
+          A two-tier web API — Flask application backed by Redis as an in-memory
+          store — orchestrated with Docker Compose. Built on an Alpine base
+          image to keep size and attack surface small, with a GitHub Actions
+          pipeline that builds and tests the image on every push so a broken
+          build never reaches main.
+        </p>
+        <p>
+          <a href="https://github.com/AlexiosLoukis/flask-redis-docker-compose"
+            >Source on GitHub →</a
+          >
+        </p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <h3>Azure infrastructure as code</h3>
+          <span class="tag tag-progress">in progress</span>
+        </div>
+        <p class="entry-tech">Terraform · Microsoft Azure · GitHub Actions</p>
+        <p>
+          Provisioning a complete Azure environment from code — resource group,
+          virtual network with segmented subnets, network security groups, a
+          virtual machine and Key Vault — with Terraform state held remotely in
+          an Azure Storage Account so changes are safe to make repeatedly.
+        </p>
+        <p>
+          The pipeline runs <code>plan</code> on every pull request and
+          <code>apply</code> on merge, authenticating to Azure through OIDC
+          federation instead of a stored secret.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Background</h2>
+
+      <div class="record">
+        <span class="when">2023 — 2027</span>
+        <div>
+          <strong>BSc Management Science &amp; Technology</strong>
+          <p class="where">
+            University of Patras · Information Systems track
+          </p>
+        </div>
+      </div>
+
+      <div class="record">
+        <span class="when">2023</span>
+        <div>
+          <strong>IT Support &amp; Hardware Technician</strong>
+          <p class="where">
+            Erasmus+ placement · Universal Mobility SL · Valencia, Spain
+          </p>
+          <p>
+            Front-line technical support across two repair centres — diagnosing
+            OS, software and hardware faults for walk-in clients, and handling
+            installations and migrations across macOS, Windows and Linux.
+          </p>
+        </div>
+      </div>
+
+      <div class="record">
+        <span class="when">2021</span>
+        <div>
+          <strong>Junior Hardware Technician</strong>
+          <p class="where">
+            Erasmus+ placement · ITEK Informática · Braga, Portugal
+          </p>
+          <p>
+            Selected at 16 for a European vocational training placement abroad.
+            Customer technical support, hardware diagnostics and software
+            configuration in an IT retail environment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Where this is going</h2>
+      <p class="lede">
+        Cloud engineering first, then security. You cannot secure infrastructure
+        you do not know how to build — so I am learning to build it properly
+        before I try to defend it.
+      </p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <ul class="links">
+        <li><a href="https://github.com/AlexiosLoukis">GitHub</a></li>
+        <li>
+          <a href="https://www.linkedin.com/in/alexiosloukis/">LinkedIn</a>
+        </li>
+        <li><a href="mailto:loykhsalexhs@gmail.com">Email</a></li>
+        <li><a href="/cv.pdf">CV (PDF)</a></li>
+      </ul>
+    </section>
+
+    <footer>Built with Astro. Deployed from GitHub.</footer>
+  </main>
+</Base>

@@ -1,0 +1,304 @@
+---
+// Props that every page passes in.
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href="https://alexiosloukis.dev/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://alexiosloukis.dev/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --paper: #fbfbfd;
+    --ink: #16202e;
+    --ink-soft: #5a6675;
+    --rule: #e2e5ec;
+    --signal: #2d6ba8;
+    --live: #1f7a5a;
+    --progress: #a86b1f;
+    --queued: #8b93a1;
+
+    --display: "Space Grotesk", system-ui, sans-serif;
+    --body: "IBM Plex Sans", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 6rem;
+  }
+
+  @media (max-width: 40rem) {
+    main {
+      padding-top: 3rem;
+    }
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--display);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 7vw, 3.25rem);
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 0.8125rem;
+    font-family: var(--mono);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0 0 1.1rem;
+  }
+
+  a {
+    color: var(--signal);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--ink);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  section {
+    margin-top: 4rem;
+  }
+
+  /* ---- hero ---- */
+
+  .tagline {
+    font-family: var(--mono);
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    margin: 0.9rem 0 2rem;
+  }
+
+  .lede {
+    font-size: 1.1875rem;
+    max-width: 36rem;
+  }
+
+  /* ---- status board (signature element) ---- */
+
+  .status {
+    border-top: 1px solid var(--rule);
+  }
+
+  .status-row {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 0.5rem 1.25rem;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+
+  @media (max-width: 34rem) {
+    .status-row {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .tag::before {
+    content: "";
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    vertical-align: 0.05em;
+    background: currentColor;
+  }
+
+  .tag-live {
+    color: var(--live);
+  }
+  .tag-progress {
+    color: var(--progress);
+  }
+  .tag-queued {
+    color: var(--queued);
+  }
+
+  .stack {
+    font-size: 0.9375rem;
+  }
+
+  .note {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    margin-top: 0.2rem;
+  }
+
+  /* ---- project entries ---- */
+
+  .entry {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .entry:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .entry-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .entry-tech {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.75rem;
+  }
+
+  .entry p {
+    margin-bottom: 0.6rem;
+    max-width: 38rem;
+  }
+
+  /* ---- background list ---- */
+
+  .record {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 0.25rem 1.25rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  @media (max-width: 34rem) {
+    .record {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .record:last-child {
+    border-bottom: 0;
+  }
+
+  .when {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    padding-top: 0.3rem;
+  }
+
+  .where {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    margin: 0.1rem 0 0;
+  }
+
+  /* ---- contact ---- */
+
+  .links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    font-family: var(--mono);
+    font-size: 0.9375rem;
+  }
+
+  footer {
+    margin-top: 5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
