@@ -1,57 +1,51 @@
-# Hi, I'm Alexios Loukis
+# alexiosloukis.dev
 
-**Cloud & DevOps** · Building toward Cloud Security
-Information Systems student at the University of Patras, Greece 🇬🇷
+Source for my personal site — a short profile of what I work with, what I'm
+currently learning, and the projects behind those claims.
 
-I automate and containerize infrastructure. Currently building Infrastructure-as-Code
-environments on Azure while preparing for the **AZ-104** certification.
+**Live:** [alexiosloukis.dev](https://alexiosloukis.dev)
 
----
+## Stack
 
-## 🔧 Working with
+| Layer | Choice | Why |
+|---|---|---|
+| Framework | [Astro](https://astro.build) | Content site, not an application. Astro ships static HTML with no client-side JavaScript by default. |
+| Styling | Plain CSS, custom properties | No build step, no framework to learn, no unused utility classes shipped to the browser. |
+| Hosting | GitHub Pages | Free static hosting, deployed straight from this repository. |
+| DNS & TLS | Cloudflare | DNS management; `.dev` is on the HSTS preload list, so HTTPS is enforced by the browser. |
+| CI/CD | GitHub Actions | Builds and deploys on every push to `main`. |
 
-![](https://skillicons.dev/icons?i=docker,linux,python,git,githubactions,bash,redis)
+## Local development
 
-**Containers** · Docker, Docker Compose, Dockerfile optimisation, container networking
-**CI/CD** · GitHub Actions — automated build & test pipelines
-**Linux** · Ubuntu, Alpine — shell scripting, permissions, process & package management
-**Languages** · Python, Bash, SQL
+```bash
+npm install      # install dependencies
+npm run dev      # dev server on http://localhost:4321
+npm run build    # production build into dist/
+npm run preview  # serve the production build locally
+```
 
-## 📚 Currently learning
+Requires Node.js (LTS).
 
-![](https://skillicons.dev/icons?i=azure,terraform,kubernetes,grafana)
+## Structure
 
-**Microsoft Azure** — preparing for AZ-104 (Azure Administrator Associate), expected Oct 2026
-**Terraform** — Infrastructure as Code
-**Kubernetes** · **Observability** (Prometheus, Grafana)
+```
+src/
+  layouts/Base.astro    shared <head>, fonts and global styles
+  pages/                one file per route (file-based routing)
+public/                 served as-is: cv.pdf, favicon
+astro.config.mjs        site URL, used for canonical links
+```
 
----
+Pages are routed by file path: `src/pages/index.astro` serves `/`,
+`src/pages/about.astro` serves `/about`.
 
-## 📦 Projects
+## Deployment
 
-### [Multi-Container Web App with Redis Caching](https://github.com/AlexiosLoukis/flask-redis-docker-compose)
-`Docker` `Docker Compose` `Python/Flask` `Redis` `GitHub Actions`
+Pushing to `main` triggers a GitHub Actions workflow that builds the site and
+publishes `dist/` to GitHub Pages. The build output is not committed —
+`dist/` and `node_modules/` are generated artifacts and stay out of version
+control.
 
-A two-tier containerized web API — Flask app + Redis cache — orchestrated with Docker Compose
-and built/tested automatically on every push via GitHub Actions. Uses an Alpine-based image
-to keep size and attack surface small.
+## License
 
-> 🚧 **Next up:** `azure-terraform-infra` — a full Azure environment provisioned as code
-> (VNet, subnets, NSGs, VM, Key Vault) with remote state and a plan/apply CI pipeline.
-
----
-
-## 🎯 Where I'm heading
-
-**Cloud Engineer → DevOps → Cloud Security**
-
-You can't secure infrastructure you don't know how to build. I'm learning to build it first.
-
----
-
-## 📫 Find me
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/alexiosloukis/)
-[![Boot.dev](https://img.shields.io/badge/Boot.dev-000000?style=flat&logo=boot.dev&logoColor=white)](https://www.boot.dev/u/alekan)
-
-[![](https://api.boot.dev/v1/users/public/1d48ca16-83ec-4720-a73e-9631ab088908/thumbnail)](https://www.boot.dev/u/alekan)
+Code is MIT. Content and CV are not.
